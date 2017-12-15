@@ -1,5 +1,12 @@
 .ui.container style="margin-top: 100px;"
-    h1 StaticPages#traffic_violations
+  .ui.grid.center.aligned.stackable
+    - for i in 0..@count-1 do
+      .four.wide.column
+        .ui.card
+          .image
+            = image_tag("catchall/raw_image/image#{i.to_s}.jpg")
+          .content
+            = image_tag("catchall/license_plate/plate#{i.to_s}.jpg")
     br
     br
     br
