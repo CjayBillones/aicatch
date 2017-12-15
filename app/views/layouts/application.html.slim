@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title CATCH-ALL
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = render 'layouts/rails_default'
+    = render 'layouts/shim'
+    = favicon_link_tag 'webcam.ico'
+
+    body
+      .wrapper
+        = render 'layouts/navbar'
+        = yield
+        = render 'layouts/footer'
