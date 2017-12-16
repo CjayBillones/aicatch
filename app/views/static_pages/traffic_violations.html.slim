@@ -1,41 +1,9 @@
 .ui.container style="margin-top: 100px;"
   .ui.grid.center.aligned.stackable
-    - for i in 0..@count-1 do
+    - @all_captured_violators.each do |x|
       .four.wide.column
         .ui.card
           .image
-            = image_tag("catchall/raw_image/image#{i.to_s}.jpg")
+            =image_tag("catchall/raw_image/#{x.raw_image}.jpg")
           .content
-            = image_tag("catchall/license_plate/plate#{i.to_s}.jpg")
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
+            = image_tag("catchall/license_plate/#{x.license_plate_image}.jpg")

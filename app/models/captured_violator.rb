@@ -1,0 +1,2 @@
+class CapturedViolator < ApplicationRecord
+end

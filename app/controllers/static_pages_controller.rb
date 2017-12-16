@@ -3,10 +3,9 @@ class StaticPagesController < ApplicationController
   end
 
   def traffic_violations
-    @base_path = 'public/images/catchall'
-    @raw_images = Dir.glob(@base_path + '/raw_image/*')
-    @license_plates = Dir.glob(@base_path + '/license_plate/*')
-    @count = (@raw_images.count == @license_plates.count) ? @raw_images.count : nil
+    @number_coding_captured_violators = CapturedViolator.where(violation: "Number Coding")
+    @illegal_loading_captured_violators = CapturedViolator.where(violation: "Illegal Loading")
+    @all_captured_violators = @number_coding_captured_violators + @illegal_loading_captured_violators
   end
 
   def reports
