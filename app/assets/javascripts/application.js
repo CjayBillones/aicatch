@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require semantic-ui
 //= require moment
+//= require jquery.dataTables.min
+//= require dataTables.semanticui.min
 //= require_tree .
 
 var datetime = null,
