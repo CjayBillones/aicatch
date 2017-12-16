@@ -5,10 +5,10 @@
 $(document).ready ->
   $('#reports').DataTable 'lengthMenu': [
     [
-      10
-      25
+      20
       50
       100
+      -1
     ]
     [
       20
