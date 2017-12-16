@@ -9,5 +9,6 @@ class StaticPagesController < ApplicationController
   end
 
   def reports
+    @all_captured_violators = CapturedViolator.all
   end
 end

@@ -1,34 +1,25 @@
 .ui.container style="margin-top: 100px;"
-  h1 StaticPages#reports
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
+  table#reports.ui.celled.table width="100%" cellspacing="0"
+    thead
+      tr.center.aligned
+        th Date
+        th Time
+        th Location
+        th License Plate
+        th Violation
+        th Penalty Amount
+    tbody
+      - @all_captured_violators.each do |x|
+        tr.center.aligned
+          th 
+            = x.capture_date.strftime("%B %d, %Y (%A)")
+          th 
+            = x.capture_date.strftime("%I:%M:%S %p")
+          th 
+            = x.location
+          th 
+            = image_tag("catchall/license_plate/#{x.license_plate_image}.jpg")
+          th 
+            = x.violation
+          th 
+            = x.penalty_amount
