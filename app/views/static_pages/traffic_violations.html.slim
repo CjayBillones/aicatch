@@ -7,3 +7,4 @@
             =image_tag("catchall/raw_image/#{x.raw_image}.jpg")
           .content
             = image_tag("catchall/license_plate/#{x.license_plate_image}.jpg")
+    = will_paginate @all_captured_violators, renderer: WillPaginateSemanticUi::ActionView::Renderer
