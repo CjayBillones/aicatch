@@ -3,5 +3,18 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  $('#reports').DataTable()
+  $('#reports').DataTable 'lengthMenu': [
+    [
+      10
+      25
+      50
+      100
+    ]
+    [
+      20
+      50
+      100
+      'All'
+    ]
+  ]
   return
