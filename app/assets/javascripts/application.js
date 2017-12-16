@@ -14,4 +14,19 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require semantic-ui
+//= require moment
 //= require_tree .
+
+var datetime = null,
+        date = null;
+
+var update = function () {
+    date = moment(new Date())
+    datetime.html(date.format('dddd, MMMM D YYYY, h:mm:ss a'));
+};
+
+$(document).ready(function(){
+    datetime = $('#datetime')
+    update();
+    setInterval(update, 1000);
+});

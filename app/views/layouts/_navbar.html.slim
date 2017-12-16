@@ -1,6 +1,8 @@
-.ui.fixed.inverted.menu
+.ui.borderless.fixed.inverted.menu
   ui.container
     = link_to  image_tag("catch-all.png", size: "200x50", class: "ui image"), root_path, class: 'header item'
     = link_to 'Live', root_path, class: 'item'
     = link_to 'Traffic Violations', traffic_violations_path, class: 'item'
     = link_to 'Reports', reports_path, class: 'item'
+  .right.menu
+    #datetime.item
