@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 20171216111717) do
     t.string   "raw_image"
     t.string   "license_plate_image"
     t.string   "violation"
+    t.string   "location"
+    t.string   "penalty_amount"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end

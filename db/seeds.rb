@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 violations = ["Number Coding", "Illegal Loading"]
+locations = ["EDSA - Balintawak", "EDSA - Quezon Ave", "EDSA - Santolan", "EDSA - White Plains", "EDSA - Ortigas Flyover", "EDSA - Megamall", "EDSA - Reliance", "EDSA - Guadalupe", "EDSA - Pasay Road"]
 
 def generate_rand_time()
   if Time.now.strftime("%A") == "Saturday"
@@ -27,6 +28,7 @@ end
 for i in 0..101 do
   violation = violations[rand(0..1)]
   time = (violation == "Number Coding") ? generate_rand_time() : rand_time(rand(1..7).days.ago)
-
-  captured_violator = CapturedViolator.create(capture_date: time, raw_image: "image#{i.to_s}", license_plate_image: "plate#{i.to_s}", violation: violation)
+  location = locations[rand(0..8)]
+  penalty_amount = (violation == "Number Coding") ? "500.00" : "150.00"
+  captured_violator = CapturedViolator.create(capture_date: time, raw_image: "image#{i.to_s}", license_plate_image: "plate#{i.to_s}", violation: violation, location: location, penalty_amount: penalty_amount)
 end
