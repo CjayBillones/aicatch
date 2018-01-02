@@ -1,11 +1,11 @@
 .ui.container style="margin-top: 100px;"
   .ui.grid.center.aligned.stackable
-    - @all_captured_violators.each do |x|
+    - @all_captured_violators.each do |violator|
       .four.wide.column
-        .ui.card
+        = link_to violator, class: 'ui card' do
           .image
-            =image_tag("catchall/raw_image/#{x.raw_image}.jpg")
+            = image_tag("catchall/raw_image/#{violator.raw_image}.jpg")
           .content
-            = image_tag("catchall/license_plate/#{x.license_plate_image}.jpg")
+            = image_tag("catchall/license_plate/#{violator.license_plate_image}.jpg")
   .ui.grid.center.aligned.stackable
     = will_paginate @all_captured_violators, renderer: WillPaginateSemanticUi::ActionView::Renderer

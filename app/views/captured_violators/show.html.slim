@@ -1,0 +1,19 @@
+.ui.container style="margin-top: 100px;"
+  .ui.container
+    .ui.left.aligned.grid.stackable
+      .eleven.wide.column
+        = image_tag("catchall/raw_image/#{@violator.raw_image}.jpg")
+      .five.wide.column 
+        p
+          = "Date: #{@violator.capture_date.strftime("%B %d, %Y (%A)")}"
+        p
+          = "Time: #{@violator.capture_date.strftime("%I:%M:%S %p")}"
+        p
+          = "Location: #{@violator.location}"
+        p
+          | License Plate: 
+          = image_tag("catchall/license_plate/#{@violator.license_plate_image}.jpg")
+        p
+         = "Violation: #{@violator.violation}"
+        p
+         = "Penalty Amount: #{@violator.penalty_amount}" 

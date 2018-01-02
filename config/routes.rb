@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   get '/reports' => 'static_pages#reports'
   get '/live-single-view' => 'static_pages#single_live'
 
+  resources :captured_violators
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
