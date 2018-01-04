@@ -31,7 +31,8 @@ for i in 0..101 do
   #violation = violations[rand(0..1)]
   violation = "Number Coding"
   time = (violation == "Number Coding") ? generate_rand_time() : rand_time(rand(1..7).days.ago)
-  location = locations[rand(0..8)]
+  #location = locations[rand(0..8)]
+  location = "Cam 1"
   penalty_amount = (violation == "Number Coding") ? "500.00" : "150.00"
   captured_violator = CapturedViolator.create(capture_date: time, raw_image: "image#{i.to_s}", license_plate_image: "plate#{i.to_s}", violation: violation, location: location, penalty_amount: penalty_amount)
 end
