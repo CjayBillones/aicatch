@@ -14,6 +14,8 @@ def generate_rand_time()
     time = rand_time(5.days.ago, 1.day.ago) 
   elsif Time.now.strftime("%A") == "Sunday"
     time = rand_time(6.days.ago, 2.days.ago)
+  else
+    time = Time.now
   end
 end
 
