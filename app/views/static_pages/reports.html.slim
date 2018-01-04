@@ -1,5 +1,11 @@
 .ui.container style="margin-top: 100px;"
-  h1 Traffic Violation Reports
+  .ui.grid.stackable
+    .five.wide.column
+      h1 Traffic Violation Reports
+    .eleven.wide.middle.aligned.column
+      p
+        | Download: 
+        = link_to "Excel", reports_path(format: "xls"), class: 'ui tiny blue button'
   .ui.divider
   table#reports.ui.celled.table width="100%" cellspacing="0"
     thead

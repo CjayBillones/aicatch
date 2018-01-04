@@ -28,7 +28,8 @@ def rand_in_range(from, to)
 end
 
 for i in 0..101 do
-  violation = violations[rand(0..1)]
+  #violation = violations[rand(0..1)]
+  violation = "Number Coding"
   time = (violation == "Number Coding") ? generate_rand_time() : rand_time(rand(1..7).days.ago)
   location = locations[rand(0..8)]
   penalty_amount = (violation == "Number Coding") ? "500.00" : "150.00"

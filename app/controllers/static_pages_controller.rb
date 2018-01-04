@@ -19,6 +19,12 @@ class StaticPagesController < ApplicationController
 
   def reports
     @all_captured_violators = CapturedViolator.where.not(license_plate_text: nil)
+    
+    respond_to do |format|
+      format.html
+      format.csv { send_data @all_captured_violators.to_csv}
+      format.xls #{ send_data @all_captured_violators.to_csv(col_sep: "\t")}
+    end
   end
 
 end
