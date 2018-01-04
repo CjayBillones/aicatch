@@ -12,13 +12,13 @@ class StaticPagesController < ApplicationController
   end
 
   def traffic_violations
-    @number_coding_captured_violators = CapturedViolator.where(violation: "Number Coding")
-    @illegal_loading_captured_violators = CapturedViolator.where(violation: "Illegal Loading")
-    @all_captured_violators = CapturedViolator.all.paginate(:page => params[:page], :per_page => 20)
+    @number_coding_captured_violators = CapturedViolator.where(violation: "Number Coding", license_plate_text: nil)
+    @illegal_loading_captured_violators = CapturedViolator.where(violation: "Illegal Loading", license_plate_text: nil)
+    @all_captured_violators = CapturedViolator.where(license_plate_text: nil).paginate(:page => params[:page], :per_page => 20)
   end
 
   def reports
-    @all_captured_violators = CapturedViolator.all
+    @all_captured_violators = CapturedViolator.where.not(license_plate_text: nil)
   end
 
 end

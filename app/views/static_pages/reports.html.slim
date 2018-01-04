@@ -20,7 +20,8 @@
           th 
             = x.location
           th 
-            = image_tag("catchall/license_plate/#{x.license_plate_image}.jpg")
+            /= image_tag("catchall/license_plate/#{x.license_plate_image}.jpg")
+            = x.license_plate_text
           th 
             = x.violation
           th 
