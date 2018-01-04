@@ -9,6 +9,18 @@ body {
   width: 100%;
 }
 
+.site {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.site-content {
+  flex: 1 0 auto;
+  padding: var(--space) var(--space) 0;
+  width: 100%;
+}
+
 .ui.inverted.vertical.footer.segment {
   margin-top: 2em;
 }
