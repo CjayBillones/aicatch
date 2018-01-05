@@ -1,5 +1,7 @@
 class CapturedViolator < ApplicationRecord
 
+  has_many :image_evidences, :dependent => :destroy
+
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << column_names
