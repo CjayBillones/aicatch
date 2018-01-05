@@ -13,9 +13,11 @@
         th Date
         th Time
         th Location
-        th License Plate
+        th License Plate Image
+        th License Plate Text
         th Violation
         th Penalty Amount
+        th Operator
     tbody
       - @all_captured_violators.each do |x|
         tr.center.aligned
@@ -25,10 +27,12 @@
             = x.capture_date.strftime("%I:%M:%S %p")
           th 
             = x.location
+          th
+            = image_tag x.image_evidences.second.image.url
           th 
-            /= image_tag("catchall/license_plate/#{x.license_plate_image}.jpg")
             = x.license_plate_text
           th 
             = x.violation
           th 
             = x.penalty_amount
+          th Operator 1
