@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  require 'will_paginate/array'
   
   def live
   
@@ -15,6 +16,8 @@ class StaticPagesController < ApplicationController
     @number_coding_captured_violators = CapturedViolator.where(violation: "Number Coding", license_plate_text: nil)
     @illegal_loading_captured_violators = CapturedViolator.where(violation: "Illegal Loading", license_plate_text: nil)
     @all_captured_violators = CapturedViolator.where(license_plate_text: nil).paginate(:page => params[:page], :per_page => 20)
+    @car_image_files = Dir.glob("#{Rails.root}/public/MASTER/IMAGES/*").paginate(:page => params[:page], :per_page => 20)
+    @license_plate_image_files = Dir.glob("#{Rails.root}/public/MASTER/PLATES/*").paginate(:page => params[:page], :per_page => 20)
   end
 
   def reports

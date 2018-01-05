@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180104082502) do
+ActiveRecord::Schema.define(version: 20180104124533) do
 
   create_table "captured_violators", force: :cascade do |t|
     t.datetime "capture_date"
@@ -19,9 +19,11 @@ ActiveRecord::Schema.define(version: 20180104082502) do
     t.string   "violation"
     t.string   "location"
     t.string   "penalty_amount"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "license_plate_text"
+    t.string   "raw_image_orig_path"
+    t.string   "license_plate_image_orig_path"
   end
 
 end
