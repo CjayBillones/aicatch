@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'momentjs-rails'
 gem 'will_paginate'
 gem "will_paginate_semantic_ui"
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

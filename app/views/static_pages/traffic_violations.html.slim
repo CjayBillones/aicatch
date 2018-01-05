@@ -16,9 +16,12 @@
                           .field
                             = image_tag(@license_plate_image_files[index].remove("#{Rails.root}/public"))
                           .field
-                            = text_field_tag :license_plate_text
-                            = hidden_field_tag :car_image_file_name, @car_image_files[index].remove("#{Rails.root}/public/MASTER/IMAGES/")
-                            = hidden_field_tag :license_plate_image_file_name, @license_plate_image_files[index].remove("#{Rails.root}/public/MASTER/PLATES/")
+                            = text_field_tag 'captured_violator[license_plate_text]'
+                            = hidden_field_tag 'captured_violator[violation]', "Number Coding"
+                            = hidden_field_tag 'captured_violator[location]', "Cam 1"
+                            = hidden_field_tag 'captured_violator[penalty_amount]', "500.00"
+                            = hidden_field_tag 'captured_violator[raw_image_orig_path]', @car_image_files[index].remove("#{Rails.root}/public/MASTER/IMAGES/")
+                            = hidden_field_tag 'captured_violator[license_plate_image_orig_path]', @license_plate_image_files[index].remove("#{Rails.root}/public/MASTER/PLATES/")
                     .row.center.aligned
                       = submit_tag "Submit", class: "fluid ui button primary"
   .ui.grid.center.aligned.stackable
