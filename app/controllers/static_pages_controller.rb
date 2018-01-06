@@ -21,7 +21,7 @@ class StaticPagesController < ApplicationController
   end
 
   def reports
-    @all_captured_violators = CapturedViolator.where.not(license_plate_text: nil)
+    @all_captured_violators = Offense.all
     
     respond_to do |format|
       format.html

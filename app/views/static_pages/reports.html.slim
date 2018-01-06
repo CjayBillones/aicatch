@@ -32,11 +32,11 @@
           th
             = image_tag x.image_evidences.second.image.url
           th
-            = best_in_place x, :license_plate_text, class: 'ui input'
+            = best_in_place x.captured_violator, :license_plate_text, class: 'ui input'
           th 
-            = x.violation
+            = x.violation.name
           th 
-            = x.penalty_amount
+            = x.violation.first_offense_penalty
           th Operator 1
           th
             = link_to 'Download', download_evidences_path(id: x.id), method: :post, class: 'ui tiny green button'

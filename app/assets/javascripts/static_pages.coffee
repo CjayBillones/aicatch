@@ -3,18 +3,23 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  $('#reports').DataTable 'lengthMenu': [
-    [
-      20
-      50
-      100
-      -1
+  $('#reports').DataTable
+    'order': [ [
+      1
+      'asc'
+    ] ]
+    'lengthMenu': [
+      [
+        20
+        50
+        100
+        -1
+      ]
+      [
+        20
+        50
+        100
+        'All'
+      ]
     ]
-    [
-      20
-      50
-      100
-      'All'
-    ]
-  ]
   return

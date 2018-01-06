@@ -70,8 +70,8 @@ class CapturedViolatorsController < ApplicationController
     require 'zip/zip'
     require 'zip/zipfilesystem'
 
-    @captured_violator = CapturedViolator.find(params[:id])
-    zip_filename = "#{@captured_violator.capture_date.strftime("%d-%B-%Y-%H-%M-%S")}-#{@captured_violator.location}-#{@captured_violator.violation}-#{@captured_violator.license_plate_text}-"
+    @captured_violator = Offense.find(params[:id])
+    zip_filename = "#{@captured_violator.capture_date.strftime("%d-%B-%Y-%H-%M-%S")}-#{@captured_violator.location}-#{@captured_violator.violation.name}-#{@captured_violator.captured_violator.license_plate_text}-"
     t = Tempfile.new(request.remote_ip + '-' + zip_filename)
 
     Zip::ZipOutputStream.open(t.path) do |zos|
