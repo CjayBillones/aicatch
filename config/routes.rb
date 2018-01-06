@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/live-single-view' => 'static_pages#single_live'
 
   resources :captured_violators
+  post '/download_evidences' => 'captured_violators#download_evidences'
   post '/encode_license_plate' => 'captured_violators#encode_license_plate'
 
 

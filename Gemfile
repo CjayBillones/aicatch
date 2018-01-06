@@ -26,6 +26,8 @@ gem 'will_paginate'
 gem 'will_paginate_semantic_ui'
 gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
 gem 'best_in_place'
+gem 'rubyzip', '>= 1.0.0'
+gem 'zip-zip'
 
 
 group :development, :test do

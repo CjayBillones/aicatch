@@ -19,6 +19,7 @@
         th Violation
         th Penalty Amount
         th Operator
+        th Evidences
     tbody
       - @all_captured_violators.each do |x|
         tr.center.aligned
@@ -37,3 +38,5 @@
           th 
             = x.penalty_amount
           th Operator 1
+          th
+            = link_to 'Download', download_evidences_path(id: x.id), method: :post, class: 'ui tiny green button'

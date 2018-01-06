@@ -73,6 +73,41 @@ class CapturedViolatorsController < ApplicationController
     redirect_to traffic_violations_path
   end
 
+  def download_evidences
+    #require 'rubygems'
+    #require 'zip'
+
+    #@captured_violator = CapturedViolator.find(params[:id])
+    #zip_filename = "#{Rails.root}/public/downloads/reports/#{@captured_violator.capture_date.strftime("%d-%B-%Y-%H-%M-%S")}-#{@captured_violator.location}-#{@captured_violator.violation}-#{@captured_violator.license_plate_text}.zip"
+
+    #Zip::File.open(zip_filename, Zip::File::CREATE) do |zipfile|
+    #  @captured_violator.image_evidences.each do |image_file|
+    #    path = image_file.image.path.split('/')
+    #    filename = path.pop
+    #    path = path.join('/')
+    #    zipfile.add(filename, File.join(path, filename))
+    #  end
+    #end
+
+    #send_file zip_filename, :type => 'application/zip', :disposition => 'attachment'
+    require 'zip/zip'
+    require 'zip/zipfilesystem'
+
+    @captured_violator = CapturedViolator.find(params[:id])
+    zip_filename = "#{@captured_violator.capture_date.strftime("%d-%B-%Y-%H-%M-%S")}-#{@captured_violator.location}-#{@captured_violator.violation}-#{@captured_violator.license_plate_text}-"
+    t = Tempfile.new(request.remote_ip + '-' + zip_filename)
+
+    Zip::ZipOutputStream.open(t.path) do |zos|
+      @captured_violator.image_evidences.each do |image_file|
+        zos.put_next_entry(image_file.image_file_name)
+        zos.print IO.read(image_file.image.path)
+      end
+    end
+
+    send_file t.path, type: 'application/zip'
+    t.close
+  end
+
   private
     def captured_violator_params
       params.require(:captured_violator).permit(:violation, :location, :penalty_amount, :license_plate_text, :raw_image_orig_path, :license_plate_image_orig_path)
