@@ -25,24 +25,3 @@
                     = submit_tag "Submit", class: "fluid ui button primary"
   .ui.grid.center.aligned.stackable
     = will_paginate @car_image_files, renderer: WillPaginateSemanticUi::ActionView::Renderer
-    /- @all_captured_violators.each do |violator|
-    /  .four.wide.column
-    /    .ui.card
-    /      .image
-    /        = image_tag("catchall/raw_image/#{violator.raw_image}.jpg")
-    /      .content
-    /        .ui.grid.center.aligned.middle.aligned.stackable
-    /          .sixteen.wide.column
-    /            = form_tag encode_license_plate_path do
-    /              .row
-    /                .ui.form
-    /                  .two.fields
-    /                    .field
-    /                      = image_tag("catchall/license_plate/#{violator.license_plate_image}.jpg")
-    /                    .field
-    /                      = text_field_tag :license_plate_text, violator.license_plate_text
-    /                      = hidden_field_tag :id, violator.id
-    /              .row.center.aligned
-    /                = submit_tag "Submit", class:"fluid ui button primary"
-  /.ui.grid.center.aligned.stackable
-   / = will_paginate @all_captured_violators, renderer: WillPaginateSemanticUi::ActionView::Renderer
