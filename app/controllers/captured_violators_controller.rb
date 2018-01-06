@@ -4,6 +4,17 @@ class CapturedViolatorsController < ApplicationController
     @violator = CapturedViolator.find(params[:id])
   end
 
+  def update
+    @captured_violator = CapturedViolator.find(params[:id])
+
+    respond_to do |format|
+      if @captured_violator.update_attributes(captured_violator_params)
+        format.html { redirect_to reports_path}
+        format.json { head :ok }
+      end
+    end
+  end
+
   def encode_license_plate
     #@violator = CapturedViolator.find(params[:id])
     #@violator.update!(license_plate_text: params[:license_plate_text])

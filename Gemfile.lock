@@ -57,6 +57,9 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
+    best_in_place (3.1.1)
+      actionpack (>= 3.2)
+      railties (>= 3.2)
     bindex (0.5.0)
     builder (3.2.3)
     byebug (9.1.0)
@@ -200,6 +203,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  best_in_place
   byebug
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
