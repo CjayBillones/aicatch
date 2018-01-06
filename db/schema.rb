@@ -10,24 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180105100145) do
+ActiveRecord::Schema.define(version: 20180106100937) do
 
   create_table "captured_violators", force: :cascade do |t|
-    t.datetime "capture_date"
-    t.string   "raw_image"
-    t.string   "license_plate_image"
-    t.string   "violation"
-    t.string   "location"
-    t.string   "penalty_amount"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
     t.string   "license_plate_text"
-    t.string   "raw_image_orig_path"
-    t.string   "license_plate_image_orig_path"
-    t.string   "capture_year"
-    t.string   "capture_month"
-    t.string   "capture_day"
-    t.string   "capture_hour"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "image_evidences", force: :cascade do |t|
@@ -44,6 +32,30 @@ ActiveRecord::Schema.define(version: 20180105100145) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+  end
+
+  create_table "offenses", force: :cascade do |t|
+    t.integer  "captured_violator_id"
+    t.integer  "violation_id"
+    t.datetime "capture_date"
+    t.string   "car_image_filename"
+    t.string   "license_plate_image_filename"
+    t.string   "video_filename"
+    t.string   "location"
+    t.string   "penalty"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["captured_violator_id"], name: "index_offenses_on_captured_violator_id"
+    t.index ["violation_id"], name: "index_offenses_on_violation_id"
+  end
+
+  create_table "violations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "first_offense_penalty"
+    t.string   "second_offense_penalty"
+    t.string   "third_offense_penalty"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
 end

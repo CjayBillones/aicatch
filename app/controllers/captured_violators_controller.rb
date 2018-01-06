@@ -16,43 +16,69 @@ class CapturedViolatorsController < ApplicationController
   end
 
   def encode_license_plate
+    #render plain: params[:captured_violator].inspect
+    @captured_violator = CapturedViolator.find_by_license_plate_text(params[:captured_violator][:license_plate_text].upcase)
+
+    if !@captured_violator
+      @captured_violator = CapturedViolator.create(license_plate_text: params[:captured_violator][:license_plate_text])
+    end
+
+    @violation = Violation.find_by_name(params[:violation][:name])
+
+    capture_year = params[:offense][:car_image_filename][0..3]
+    capture_month = params[:offense][:car_image_filename][4..5]
+    capture_day = params[:offense][:car_image_filename][6..7]
+    capture_hour = params[:offense][:car_image_filename][9..10]
+    capture_minute = params[:offense][:car_image_filename][11..12]
+    capture_second = params[:offense][:car_image_filename][13..14]
+    capture_date = "#{capture_year}-#{capture_month}-#{capture_day} #{capture_hour}:#{capture_minute}:#{capture_second}"
+
+
+    @violator_offense = Offense.create(captured_violator_id: @captured_violator.id,
+                                       violation_id: @violation.id,
+                                       capture_date: capture_date,
+                                       car_image_filename: params[:offense][:car_image_filename],
+                                       license_plate_image_filename: params[:offense][:license_plate_image_filename],
+                                       location: params[:offense][:location],
+                                       penalty: "300")
+
     #@violator = CapturedViolator.find(params[:id])
     #@violator.update!(license_plate_text: params[:license_plate_text])
 
-    @captured_violator = CapturedViolator.create!(captured_violator_params)
+    #@captured_violator = CapturedViolator.create!(captured_violator_params)
 
-    if @captured_violator.save
-      capture_year = @captured_violator.raw_image_orig_path[0..3]
-      capture_month = @captured_violator.raw_image_orig_path[4..5]
-      capture_day = @captured_violator.raw_image_orig_path[6..7]
-      capture_hour = @captured_violator.raw_image_orig_path[9..10]
-      capture_minute = @captured_violator.raw_image_orig_path[11..12]
-      capture_second = @captured_violator.raw_image_orig_path[13..14]
-      capture_date = "#{capture_year}-#{capture_month}-#{capture_day} #{capture_hour}:#{capture_minute}:#{capture_second}"
-      @captured_violator.update!(capture_date: capture_date)
+    #if @captured_violator.save
+    #  capture_year = @captured_violator.raw_image_orig_path[0..3]
+    #  capture_month = @captured_violator.raw_image_orig_path[4..5]
+    #  capture_day = @captured_violator.raw_image_orig_path[6..7]
+    #  capture_hour = @captured_violator.raw_image_orig_path[9..10]
+    #  capture_minute = @captured_violator.raw_image_orig_path[11..12]
+    #  capture_second = @captured_violator.raw_image_orig_path[13..14]
+    #  capture_date = "#{capture_year}-#{capture_month}-#{capture_day} #{capture_hour}:#{capture_minute}:#{capture_second}"
+    #  @captured_violator.update!(capture_date: capture_date)
 
-      car_image_path = "#{Rails.root}/public/MASTER/IMAGES/#{@captured_violator.raw_image_orig_path}"
-      car_image_file = File.new(car_image_path)
+    #  car_image_path = "#{Rails.root}/public/MASTER/IMAGES/#{@captured_violator.raw_image_orig_path}"
+    #  car_image_file = File.new(car_image_path)
 
-      license_plate_image_path = "#{Rails.root}/public/MASTER/PLATES/#{@captured_violator.license_plate_image_orig_path}"
-      license_plate_image_file = File.new(license_plate_image_path)  
+    #  license_plate_image_path = "#{Rails.root}/public/MASTER/PLATES/#{@captured_violator.license_plate_image_orig_path}"
+    #  license_plate_image_file = File.new(license_plate_image_path)  
 
-      @captured_violator.image_evidences.create(capture_year: capture_year,
-                                                capture_month: capture_month,
-                                                capture_day: capture_day,
-                                                capture_hour: capture_hour,
-                                                capture_minute: capture_minute,
-                                                capture_second: capture_second,
-                                                image: car_image_file)
+    #  @captured_violator.image_evidences.create(capture_year: capture_year,
+    #                                            capture_month: capture_month,
+    #                                            capture_day: capture_day,
+    #                                            capture_hour: capture_hour,
+    #                                            capture_minute: capture_minute,
+    #                                            capture_second: capture_second,
+    #                                            image: car_image_file)
 
-      @captured_violator.image_evidences.create(capture_year: capture_year,
-                                                capture_month: capture_month,
-                                                capture_day: capture_day,
-                                                capture_hour: capture_hour,
-                                                capture_minute: capture_minute,
-                                                capture_second: capture_second,
-                                                image: license_plate_image_file)
-    end
+    #  @captured_violator.image_evidences.create(capture_year: capture_year,
+    #                                            capture_month: capture_month,
+    #                                            capture_day: capture_day,
+    #                                            capture_hour: capture_hour,
+    #                                            capture_minute: capture_minute,
+    #                                            capture_second: capture_second,
+    #                                            image: license_plate_image_file)
+    #end
 
     #@car_image_file_name = params[:car_image_file_name]
     #@license_plate_image_file_name = params[:license_plate_image_file_name]
@@ -107,10 +133,5 @@ class CapturedViolatorsController < ApplicationController
     send_file t.path, type: 'application/zip'
     t.close
   end
-
-  private
-    def captured_violator_params
-      params.require(:captured_violator).permit(:violation, :location, :penalty_amount, :license_plate_text, :raw_image_orig_path, :license_plate_image_orig_path)
-    end
 
 end

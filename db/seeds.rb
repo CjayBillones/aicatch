@@ -1,13 +1,11 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
-violations = ["Number Coding", "Illegal Loading"]
-locations = ["EDSA - Balintawak", "EDSA - Quezon Ave", "EDSA - Santolan", "EDSA - White Plains", "EDSA - Ortigas Flyover", "EDSA - Megamall", "EDSA - Reliance", "EDSA - Guadalupe", "EDSA - Pasay Road"]
+violations = {"Number Coding" => {"first" => "300", "second" => "300", "third" => "300"}, "Illegal Loading" => {"first" => "150", "second" => "150", "third" => "150"}}
+violations.each_pair do |key, value|
+  Violation.create!(name: key, first_offense_penalty: value["first"], second_offense_penalty: value["second"], third_offense_penalty: value["third"])
+end
 
 #def generate_rand_time()
 #  if Time.now.strftime("%A") == "Saturday"
