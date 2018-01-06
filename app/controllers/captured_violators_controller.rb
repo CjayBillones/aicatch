@@ -42,6 +42,28 @@ class CapturedViolatorsController < ApplicationController
                                        location: params[:offense][:location],
                                        penalty: "300")
 
+    car_image_path = "#{Rails.root}/public/MASTER/IMAGES/#{@violator_offense.car_image_filename}"
+    car_image_file = File.new(car_image_path)
+
+    license_plate_image_path = "#{Rails.root}/public/MASTER/PLATES/#{@violator_offense.license_plate_image_filename}"
+    license_plate_image_file = File.new(license_plate_image_path)
+
+    @violator_offense.image_evidences.create(capture_year: capture_year,
+                                             capture_month: capture_month,
+                                             capture_day: capture_day,
+                                             capture_hour: capture_hour,
+                                             capture_minute: capture_minute,
+                                             capture_second: capture_second,
+                                             image: car_image_file)
+
+    @violator_offense.image_evidences.create(capture_year: capture_year,
+                                             capture_month: capture_month,
+                                             capture_day: capture_day,
+                                             capture_hour: capture_hour,
+                                             capture_minute: capture_minute,
+                                             capture_second: capture_second,
+                                             image: license_plate_image_file)
+
     #@violator = CapturedViolator.find(params[:id])
     #@violator.update!(license_plate_text: params[:license_plate_text])
 

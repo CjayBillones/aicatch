@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180106100937) do
+ActiveRecord::Schema.define(version: 20180106133807) do
 
   create_table "captured_violators", force: :cascade do |t|
     t.string   "license_plate_text"
@@ -19,15 +19,15 @@ ActiveRecord::Schema.define(version: 20180106100937) do
   end
 
   create_table "image_evidences", force: :cascade do |t|
-    t.integer  "captured_violator_id"
+    t.integer  "offense_id"
     t.string   "capture_year"
     t.string   "capture_month"
     t.string   "capture_day"
     t.string   "capture_hour"
     t.string   "capture_minute"
     t.string   "capture_second"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"

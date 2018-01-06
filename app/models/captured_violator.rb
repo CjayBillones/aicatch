@@ -2,7 +2,6 @@ class CapturedViolator < ApplicationRecord
 
   before_save :upcase_license_plate_text
 
-  has_many :image_evidences, :dependent => :destroy
   has_many :offenses
   has_many :violations, :through => :offenses
 
