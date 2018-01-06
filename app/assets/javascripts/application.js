@@ -18,6 +18,14 @@
 //= require moment
 //= require jquery.dataTables.min
 //= require dataTables.semanticui.min
+//= require dataTables.buttons.min
+//= require buttons.semanticui.min
+//= require jszip.min
+//= require pdfmake.min
+//= require vfs_fonts
+//= require buttons.html5.min
+//= require buttons.print.min
+//= require buttons.colVis.min
 //= require_tree .
 
 var datetime = null,
