@@ -1,10 +1,21 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
+require 'csv'
 
 violations = {"Number Coding" => {"first" => "300", "second" => "300", "third" => "300"}, "Illegal Loading" => {"first" => "150", "second" => "150", "third" => "150"}}
 violations.each_pair do |key, value|
   Violation.create!(name: key, first_offense_penalty: value["first"], second_offense_penalty: value["second"], third_offense_penalty: value["third"])
+end
+
+captured_violator_placeholders_csv = File.read(Rails.root.join('lib','seeds','captured_violator_placeholders.csv'))
+csv = CSV.parse(captured_violator_placeholders_csv, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  captured_violator_placholder = CapturedViolatorPlaceholder.create!(capture_date: row['Capture Date'],
+                                                                     license_plate_text: row['License Plate Text'],
+                                                                     car_image_filename: row['Car Image Filename'],
+                                                                     license_plate_image_filename: row['License Plate Image Filename'],
+                                                                     video_filename: row['Video Filename'],
+                                                                     violation: row['Violation'],
+                                                                     location: row['Location']
+                                                                    )
 end
 
 #def generate_rand_time()

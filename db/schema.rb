@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180106133807) do
+ActiveRecord::Schema.define(version: 20180107032139) do
+
+  create_table "captured_violator_placeholders", force: :cascade do |t|
+    t.string   "capture_date"
+    t.string   "license_plate_text"
+    t.string   "car_image_filename"
+    t.string   "license_plate_image_filename"
+    t.string   "video_filename"
+    t.string   "violation"
+    t.string   "location"
+    t.boolean  "encoded",                      default: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+  end
 
   create_table "captured_violators", force: :cascade do |t|
     t.string   "license_plate_text"

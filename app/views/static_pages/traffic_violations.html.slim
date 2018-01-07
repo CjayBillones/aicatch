@@ -1,11 +1,10 @@
 .ui.container style="margin-top: 100px;"
   .ui.grid.stackable
-    - @car_image_files.each_with_index do |x, index|
-      /- if CapturedViolator.where(raw_image_orig_path: @car_image_files[index].remove("#{Rails.root}/public/MASTER/IMAGES/"), license_plate_image_orig_path: @license_plate_image_files[index].remove("#{Rails.root}/public/MASTER/PLATES/")).empty?
+    - @captured_violator_placeholders.each do |violator|
       .four.wide.column
         .ui.card
           .image
-            = image_tag(@car_image_files[index].remove("#{Rails.root}/public"))
+            = image_tag("/MASTER/IMAGES/#{violator.car_image_filename}")
           .content
             .ui.grid.center.aligned.middle.aligned.stackable
               .sixteen.wide.column
@@ -14,14 +13,39 @@
                     .ui.form
                       .two.fields
                         .field
-                          = image_tag(@license_plate_image_files[index].remove("#{Rails.root}/public"))
+                          = image_tag("/MASTER/PLATES/#{violator.license_plate_image_filename}")
                         .field
-                          = text_field_tag 'captured_violator[license_plate_text]'
-                          = hidden_field_tag 'violation[name]', "Number Coding"
-                          = hidden_field_tag 'offense[location]', "Cam 1"
-                          = hidden_field_tag 'offense[car_image_filename]', @car_image_files[index].remove("#{Rails.root}/public/MASTER/IMAGES/")
-                          = hidden_field_tag 'offense[license_plate_image_filename]', @license_plate_image_files[index].remove("#{Rails.root}/public/MASTER/PLATES/")
-                  .row.center.aligned
-                    = submit_tag "Submit", class: "fluid ui button primary"
+                          = text_field_tag 'captured_violator[license_plate_text]', violator.license_plate_text
+                          = hidden_field_tag 'violation[name]', violator.violation
+                          = hidden_field_tag 'offense[location]', violator.location
+                          = hidden_field_tag 'offense[car_image_filename]', violator.car_image_filename
+                          = hidden_field_tag 'offense[license_plate_image_filename]', violator.license_plate_image_filename
+                    .row.center.aligned
+                      = submit_tag "Encode", class: 'fluid ui button primary'
   .ui.grid.center.aligned.stackable
-    = will_paginate @car_image_files, renderer: WillPaginateSemanticUi::ActionView::Renderer
+    = will_paginate @captured_violator_placeholders, renderer: WillPaginateSemanticUi::ActionView::Renderer
+    /- @car_image_files.each_with_index do |x, index|
+      /- if CapturedViolator.where(raw_image_orig_path: @car_image_files[index].remove("#{Rails.root}/public/MASTER/IMAGES/"), license_plate_image_orig_path: @license_plate_image_files[index].remove("#{Rails.root}/public/MASTER/PLATES/")).empty?
+      /.four.wide.column
+      /  .ui.card
+      /    .image
+      /      = image_tag(@car_image_files[index].remove("#{Rails.root}/public"))
+      /    .content
+      /      .ui.grid.center.aligned.middle.aligned.stackable
+      /        .sixteen.wide.column
+      /          = form_tag encode_license_plate_path do
+      /            .row
+      /              .ui.form
+      /                .two.fields
+      /                  .field
+      /                    = image_tag(@license_plate_image_files[index].remove("#{Rails.root}/public"))
+      /                  .field
+      /                    = text_field_tag 'captured_violator[license_plate_text]'
+      /                    = hidden_field_tag 'violation[name]', "Number Coding"
+      /                    = hidden_field_tag 'offense[location]', "Cam 1"
+      /                    = hidden_field_tag 'offense[car_image_filename]', @car_image_files[index].remove("#{Rails.root}/public/MASTER/IMAGES/")
+      /                    = hidden_field_tag 'offense[license_plate_image_filename]', @license_plate_image_files[index].remove("#{Rails.root}/public/MASTER/PLATES/")
+      /            .row.center.aligned
+      /              = submit_tag "Submit", class: "fluid ui button primary"
+  /.ui.grid.center.aligned.stackable
+  /  = will_paginate @car_image_files, renderer: WillPaginateSemanticUi::ActionView::Renderer

@@ -13,8 +13,7 @@ class StaticPagesController < ApplicationController
   end
 
   def traffic_violations
-    @number_coding_captured_violators = CapturedViolator.where(violation: "Number Coding", license_plate_text: nil)
-    @illegal_loading_captured_violators = CapturedViolator.where(violation: "Illegal Loading", license_plate_text: nil)
+    @captured_violator_placeholders = CapturedViolatorPlaceholder.all.paginate(:page => params[:page], :per_page => 20)
     @all_captured_violators = CapturedViolator.where(license_plate_text: nil).paginate(:page => params[:page], :per_page => 20)
     @car_image_files = Dir.glob("#{Rails.root}/public/MASTER/IMAGES/*").sort.paginate(:page => params[:page], :per_page => 20)
     @license_plate_image_files = Dir.glob("#{Rails.root}/public/MASTER/PLATES/*").sort.paginate(:page => params[:page], :per_page => 20)
