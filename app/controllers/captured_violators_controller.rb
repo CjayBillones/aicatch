@@ -16,6 +16,7 @@ class CapturedViolatorsController < ApplicationController
   end
 
   def encode_license_plate
+    @captured_violator_placeholder = CapturedViolatorPlaceholder.find(params[:captured_violator_placeholder][:id])
     @captured_violator = CapturedViolator.find_by_license_plate_text(params[:captured_violator][:license_plate_text].upcase)
 
     if !@captured_violator
@@ -62,6 +63,10 @@ class CapturedViolatorsController < ApplicationController
                                              capture_minute: capture_minute,
                                              capture_second: capture_second,
                                              image: license_plate_image_file)
+
+    if @captured_violator_placeholder and @violator_offense and @captured_violator
+      @captured_violator_placeholder.update(encoded: true)
+    end
 
     redirect_to traffic_violations_path
   end
