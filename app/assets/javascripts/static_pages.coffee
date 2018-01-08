@@ -26,6 +26,7 @@ $(document).ready ->
   second = currentDate.getSeconds()
   d = day + '-' + monthNames[month] + '-' + year + '_' + hour + '-' + minute + '-' + second
   table = $('#reports').DataTable(
+    'dom': '<\'ui grid\'' + '<\'row\'' + '<\'four wide column\'l>' + '<\'center aligned eight wide column\'B>' + '<\'right aligned four wide column\'f>' + '>' + '<\'row dt-table\'' + '<\'sixteen wide column\'tr>' + '>' + '<\'row\'' + '<\'seven wide column\'i>' + '<\'right aligned nine wide column\'p>' + '>' + '>'
     'buttons': [
       {
         extend: 'print'
@@ -61,5 +62,4 @@ $(document).ready ->
         'All'
       ]
     ])
-  table.buttons().container().appendTo $('div.eight.column:eq(0)', table.table().container())
   return
