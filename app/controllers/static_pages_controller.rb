@@ -13,10 +13,12 @@ class StaticPagesController < ApplicationController
   end
 
   def traffic_violations
-    @captured_violator_placeholders = CapturedViolatorPlaceholder.where(encoded: false).paginate(:page => params[:page], :per_page => 20)
-    @all_captured_violators = CapturedViolator.where(license_plate_text: nil).paginate(:page => params[:page], :per_page => 20)
-    @car_image_files = Dir.glob("#{Rails.root}/public/MASTER/IMAGES/*").sort.paginate(:page => params[:page], :per_page => 20)
-    @license_plate_image_files = Dir.glob("#{Rails.root}/public/MASTER/PLATES/*").sort.paginate(:page => params[:page], :per_page => 20)
+    if params[:location_filter].present?
+      @captured_violator_placeholders = CapturedViolatorPlaceholder.filter_locations(params[:location_filter]) if params[:location_filter].present?
+    else
+      @captured_violator_placeholders = CapturedViolatorPlaceholder.where(encoded: false)
+    end
+    @captured_violator_placeholders = @captured_violator_placeholders.paginate(:page => params[:page], :per_page => 20)
   end
 
   def reports

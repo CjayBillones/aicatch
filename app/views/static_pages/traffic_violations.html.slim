@@ -1,4 +1,12 @@
 .ui.container style="margin-top: 100px;"
+  .ui.form
+      = form_tag traffic_violations_path, method: :get
+        .inline.fields
+          .ten.wide.field
+            = label_tag "Location: "
+            = text_field_tag 'location_filter'
+          .two.wide.field
+            = submit_tag 'Filter', class: 'ui button'
   .ui.grid.stackable
     - @captured_violator_placeholders.each do |violator|
       .four.wide.column
