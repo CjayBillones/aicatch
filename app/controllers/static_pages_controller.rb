@@ -13,7 +13,9 @@ class StaticPagesController < ApplicationController
   end
 
   def traffic_violations
+    @locations = Location.pluck(:name)
     if params[:location_filter].present?
+      @selected_location = params[:location_filter]
       @captured_violator_placeholders = CapturedViolatorPlaceholder.filter_locations(params[:location_filter]) if params[:location_filter].present?
     else
       @captured_violator_placeholders = CapturedViolatorPlaceholder.where(encoded: false)

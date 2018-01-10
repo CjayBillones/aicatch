@@ -16,6 +16,7 @@
 //= require best_in_place
 //= require semantic-ui
 //= require moment
+//= require select2-full
 //= require jquery.dataTables.min
 //= require dataTables.semanticui.min
 //= require dataTables.buttons.min
@@ -40,4 +41,11 @@ $(document).ready(function(){
     datetime = $('#datetime')
     update();
     setInterval(update, 1000);
+});
+
+$(document).ready(function() {
+  $('#location_filter').select2({
+    placeholder: "Choose a location",
+    allowClear: true
+  });
 });

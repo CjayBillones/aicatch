@@ -28,6 +28,7 @@ gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
 gem 'best_in_place'
 gem 'rubyzip', '>= 1.0.0'
 gem 'zip-zip'
+gem 'select2-rails', '~> 4.0', '>= 4.0.3'
 
 
 group :development, :test do
