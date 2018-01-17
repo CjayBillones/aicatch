@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root 'static_pages#live'
 
   get '/live' => 'static_pages#live'
@@ -11,6 +10,9 @@ Rails.application.routes.draw do
   post '/download_evidences' => 'captured_violators#download_evidences'
   post '/encode_license_plate' => 'captured_violators#encode_license_plate'
 
+  resources :users
+  get '/create_user' => 'users#new'
+  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

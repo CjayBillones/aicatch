@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180110160517) do
+ActiveRecord::Schema.define(version: 20180117095754) do
 
   create_table "captured_violator_placeholders", force: :cascade do |t|
     t.string   "capture_date"
@@ -66,6 +66,19 @@ ActiveRecord::Schema.define(version: 20180110160517) do
     t.datetime "updated_at",                   null: false
     t.index ["captured_violator_id"], name: "index_offenses_on_captured_violator_id"
     t.index ["violation_id"], name: "index_offenses_on_violation_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "admin"
+    t.string   "role"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   create_table "violations", force: :cascade do |t|
