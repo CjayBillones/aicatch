@@ -25,7 +25,7 @@
           th 
             = x.location
           th
-            = image_tag x.image_evidences.second.image.url
+            = image_tag x.image_evidences.second.image.url if !x.image_evidences.second.nil?
           th
             = best_in_place x.captured_violator, :license_plate_text, class: 'ui input'
           th 

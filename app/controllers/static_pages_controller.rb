@@ -9,7 +9,6 @@ class StaticPagesController < ApplicationController
     #render plain: params[:camera].inspect
     @source = params[:src]
     @camera = params[:camera]
-    @all_captured_violators = CapturedViolator.all
   end
 
   def traffic_violations
