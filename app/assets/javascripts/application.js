@@ -43,9 +43,19 @@ $(document).ready(function(){
     setInterval(update, 1000);
 });
 
+$(function() {
+  $(".message.closable .close.icon").on("click", function() {
+    $('.message.closable').fadeOut("slow");
+    return false;
+  })
+});
+
 $(document).ready(function() {
   $('#location_filter').select2({
     placeholder: "Choose a location",
     allowClear: true
   });
+  $('#user_role').select2({
+    placeholder: "Choose a role"
+  })
 });

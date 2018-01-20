@@ -1,0 +1,9 @@
+- if !flash.empty?
+  .row
+    - flash.each do |message_type, message|
+      |  <div class="
+      = flash_class(message_type)
+      |  closable"> 
+      i.close.icon
+      = message
+  .row

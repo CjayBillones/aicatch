@@ -1,2 +1,7 @@
-h1 Users#new
-p Find me in app/views/users/new.html.slim
+- provide(:button_text, 'Create User Account')
+
+.ui.container style="margin-top: 100px;"
+  h2.ui.header.center.aligned Create User
+  .ui.dividing.header
+  = render "shared/flash"
+  = render 'form'
