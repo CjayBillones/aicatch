@@ -30,7 +30,7 @@
 
   .field.required
     = f.label :role, "User Role"
-    = f.select(:role, user_roles_for_select, prompt: "Choose a user role", class: 'ui dropdown')
+    = f.select(:role, user_roles_for_select, class: 'ui dropdown')
 
   .field
     = f.submit yield(:button_text), class: 'ui fluid button primary'

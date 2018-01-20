@@ -55,7 +55,5 @@ $(document).ready(function() {
     placeholder: "Choose a location",
     allowClear: true
   });
-  $('#user_role').select2({
-    placeholder: "Choose a role"
-  })
+  $('#user_role').select2();
 });
