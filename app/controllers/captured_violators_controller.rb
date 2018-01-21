@@ -1,4 +1,7 @@
 class CapturedViolatorsController < ApplicationController
+  include ApplicationHelper
+  
+  before_action :logged_in_user
 
   def show
     @violator = CapturedViolator.find(params[:id])

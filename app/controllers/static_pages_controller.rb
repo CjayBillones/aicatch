@@ -1,6 +1,9 @@
 class StaticPagesController < ApplicationController
+  include ApplicationHelper
   require 'will_paginate/array'
   
+  before_action :logged_in_user
+
   def live
   
   end

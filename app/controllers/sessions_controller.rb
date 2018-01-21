@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  include ApplicationHelper
+
+  before_action :logged_out, only: [:new, :create]
   
   def new
   

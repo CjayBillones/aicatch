@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  include ApplicationHelper
+  
+  before_action :logged_in_user
 
   def show
     @user = User.find(params[:id])
