@@ -20,8 +20,40 @@ csv.each do |row|
                                                                      video_filename: row['Video Filename'],
                                                                      violation: row['Violation'],
                                                                      location: Location.find_by_name(row['Location']).name
-                                                                    )
+                                                                    ) if !CapturedViolatorPlaceholder.find_by_license_plate_text(row['License Plate Text'])
 end
+
+admin_one = User.create!(username: 'rkbillones',
+                         password: 'password',
+                         password_confirmation: 'password',
+                         name: 'Robert Kerwin Billones',
+                         admin: true,
+                         role: 'AICatch Admin'
+                        ) if !User.find_by_username('rkbillones')
+
+admin_two = User.create!(username: 'jajose',
+                         password: 'password',
+                         password_confirmation: 'password',
+                         name: 'John Anthony Jose',
+                         admin: true,
+                         role: 'AICatch Admin'
+                        ) if !User.find_by_username('jajose')
+
+mmda_admin = User.create!(username: 'operator_head',
+                          password: 'password',
+                          password_confirmation: 'password',
+                          name: 'MMDA Operator Head',
+                          admin: true,
+                          role: 'Operator Head'
+                         ) if !User.find_by_username('operator_head')
+
+mmda_operator = User.create!(username: 'operator_one',
+                             password: 'password',
+                             password_confirmation: 'password',
+                             name: 'MMDA Operator One',
+                             admin: false,
+                             role: 'Operator'
+                            ) if !User.find_by_username('operator_one')
 
 #def generate_rand_time()
 #  if Time.now.strftime("%A") == "Saturday"
