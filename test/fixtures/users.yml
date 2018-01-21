@@ -1,0 +1,7 @@
+admin:
+  id: 1
+  name: Operator Head
+  username: operator_head
+  password_digest: <%= User.digest('password') %>
+  admin: true
+  role: Operator Head
