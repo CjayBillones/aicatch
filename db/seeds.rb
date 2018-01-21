@@ -20,7 +20,7 @@ csv.each do |row|
                                                                      video_filename: row['Video Filename'],
                                                                      violation: row['Violation'],
                                                                      location: Location.find_by_name(row['Location']).name
-                                                                    ) if !CapturedViolatorPlaceholder.find_by_license_plate_text(row['License Plate Text'])
+                                                                    )
 end
 
 admin_one = User.create!(username: 'rkbillones',
