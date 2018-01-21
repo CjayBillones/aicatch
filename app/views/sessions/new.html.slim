@@ -5,12 +5,23 @@
         h2.ui.header.center.aligned Login
         .ui.divider
         = render 'shared/flash'
+        
         = form_for(:session, url: login_path, :html => {:id => 'loginform', :class => 'ui form'}) do |f|
+          
           .field
             = f.label :username, 'Username'
             = f.text_field :username, placeholder: 'username'
+          
           .field
             = f.label :password, 'Password'
             = f.password_field :password, placeholder: 'password'
+
           .field
-            = f.submit "Login", class: 'ui fluid button primary'
+            .ui.grid.stackable
+              .left.floated.middle.aligned.six.wide.column
+                .ui.checkbox
+                  = f.check_box :remember_me
+                  = f.label :remember_me
+
+              .right.floated.right.aligned.ten.wide.column
+                = f.submit "Login", class: 'ui fluid button primary'

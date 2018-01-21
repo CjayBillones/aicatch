@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180117095754) do
+ActiveRecord::Schema.define(version: 20180121080242) do
 
   create_table "captured_violator_placeholders", force: :cascade do |t|
     t.string   "capture_date"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20180117095754) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
+    t.string   "remember_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
