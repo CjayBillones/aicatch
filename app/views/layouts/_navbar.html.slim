@@ -5,4 +5,6 @@ header.ui.borderless.fixed.inverted.menu
     = link_to 'Traffic Violations', traffic_violations_path, class: 'item'
     = link_to 'Reports', reports_path, class: 'item'
   .right.menu
+    -if logged_in?
+      = link_to "Logout", logout_path, method: :delete, class: 'item'
     #datetime.item
