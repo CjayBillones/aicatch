@@ -2,7 +2,12 @@ require 'test_helper'
 
 class UserCreationTest < ActionDispatch::IntegrationTest
 
+  def setup
+    @admin = users(:admin)
+  end
+
   test "invalid create user information" do
+    log_in_as(@admin)
     get create_user_path
     assert_no_difference 'User.count' do
     post users_path, params: { user: { name: "",
@@ -18,6 +23,7 @@ class UserCreationTest < ActionDispatch::IntegrationTest
   end
 
   test "valid create user information" do
+    log_in_as(@admin)
     get create_user_path
     assert_difference 'User.count', 1 do
       post users_path, params: { user: { name: "Operator 1",

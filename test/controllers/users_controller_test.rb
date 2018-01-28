@@ -1,9 +1,10 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-  test "should get new" do
+  
+  test "should redirect to login page when accessing users new page by public user" do
     get create_user_path
-    assert_response :success
+    assert_redirected_to login_path
   end
 
 end
