@@ -4,13 +4,11 @@
       = @camera
     .ui.divider  
     .ui.left.aligned.grid.stackable
-      .eleven.wide.column
-        image[src="#{@source}" style="border: 0 none transparent; min-height: 200px;" height="100%" width="100%" frameborder="0"]
-/      .five.wide.column 
-/        .ui.segment
-/          h1.ui.center.aligned.header
-/            | Captured License Plates
-/        .ui.segment style="height: 600px; margin-top: 15px; overflow:scroll;"
-/          - @all_captured_violators.each do |x|
-/            = image_tag("catchall/license_plate/#{x.license_plate_}.jpg")
-/            br
+      .ten.wide.column
+        .ui.segment
+          image[src="#{@source}" style="border: 0 none transparent; min-height: 200px; max-height: 600px;" height="100%" width="100%" frameborder="0"]
+      .six.wide.column 
+        .ui.segment
+          h1.ui.center.aligned.header
+            | Captured License Plates
+        = render 'captured_vehicles_live'
