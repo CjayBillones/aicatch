@@ -10,9 +10,15 @@ class StaticPagesController < ApplicationController
 
   def single_live
     #render plain: params[:camera].inspect
-    @source = params[:src]
-    @camera = params[:camera]
-    @all_captured_violators = CapturedViolatorPlaceholder.all
+    #@source = params[:src]
+    #@camera = params[:camera]
+    #byebug
+    @all_captured_violators = CapturedViolatorPlaceholder.all.order('capture_date DESC')
+    #byebug
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def traffic_violations

@@ -57,3 +57,11 @@ $(document).ready(function() {
   });
   $('#user_role').select2();
 });
+
+$(document).ready(function () {
+  setInterval(refreshPartial, 1000);
+});
+
+function refreshPartial() {
+  $.get("/single_live.js", function(data){});  
+}

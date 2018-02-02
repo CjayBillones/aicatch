@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/live' => 'static_pages#live'
   get '/traffic_violations' => 'static_pages#traffic_violations'
   get '/reports' => 'static_pages#reports'
-  get '/live-single-view' => 'static_pages#single_live'
+  get '/single_live' => 'static_pages#single_live'
 
   resources :captured_violators
   post '/download_evidences' => 'captured_violators#download_evidences'
