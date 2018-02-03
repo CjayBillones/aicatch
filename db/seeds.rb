@@ -5,7 +5,7 @@ locations.each do |x|
   location = Location.create(name: x) if !Location.find_by_name(x)
 end
 
-violations = {"Number Coding" => {"first" => "300", "second" => "300", "third" => "300"}, "Illegal Loading" => {"first" => "150", "second" => "150", "third" => "150"}}
+violations = {"Number Coding" => {"first" => 300.00, "second" => 300.00, "third" => 300.00}, "Illegal Loading" => {"first" => 150.00, "second" => 150.00, "third" => 150.00}}
 violations.each_pair do |key, value|
   Violation.create!(name: key, first_offense_penalty: value["first"], second_offense_penalty: value["second"], third_offense_penalty: value["third"]) if !Violation.find_by_name(key)
 end

@@ -93,11 +93,12 @@ ActiveRecord::Schema.define(version: 20180203191755) do
 
   create_table "violations", force: :cascade do |t|
     t.string   "name"
-    t.string   "first_offense_penalty"
-    t.string   "second_offense_penalty"
-    t.string   "third_offense_penalty"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.decimal  "fixed_penalty",          default: "0.0"
+    t.decimal  "first_offense_penalty"
+    t.decimal  "second_offense_penalty"
+    t.decimal  "third_offense_penalty"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
 end
