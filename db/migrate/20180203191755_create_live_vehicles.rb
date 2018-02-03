@@ -1,6 +1,6 @@
-class CreateCapturedViolatorPlaceholders < ActiveRecord::Migration[5.0]
+class CreateLiveVehicles < ActiveRecord::Migration[5.0]
   def change
-    create_table :captured_violator_placeholders do |t|
+    create_table :live_vehicles do |t|
       t.string :capture_date
       t.string :license_plate_text
       t.string :car_image_filename

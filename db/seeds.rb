@@ -23,6 +23,8 @@ csv.each do |row|
                                                                     )
 end
 
+live_vehicle = LiveVehicle.create!(capture_date: '2018-01-01 13:48:22', license_plate_text: 'ACE1242', car_image_filename: '20180101_134822_image3.jpg', license_plate_image_filename: '20180101_134822_plate3.jpg', video_filename: '20180101_1348_video.avi', violation: 'Number Coding', location: 'Cam 1')
+
 admin_one = User.create!(username: 'rkbillones',
                          password: 'password',
                          password_confirmation: 'password',
@@ -54,31 +56,3 @@ mmda_operator = User.create!(username: 'operator_one',
                              admin: false,
                              role: 'Operator'
                             ) if !User.find_by_username('operator_one')
-
-#def generate_rand_time()
-#  if Time.now.strftime("%A") == "Saturday"
-#    time = rand_time(5.days.ago, 1.day.ago) 
-#  elsif Time.now.strftime("%A") == "Sunday"
-#    time = rand_time(6.days.ago, 2.days.ago)
-#  else
-#    time = Time.now
-#  end
-#end
-
-#def rand_time(from, to=Time.now)
-#  Time.at(rand_in_range(from.to_f, to.to_f))
-#end
-
-#def rand_in_range(from, to)
-#  rand * (to - from) + from
-#end
-
-#for i in 0..101 do
-  #violation = violations[rand(0..1)]
-#  violation = "Number Coding"
-#  time = (violation == "Number Coding") ? generate_rand_time() : rand_time(rand(1..7).days.ago)
-  #location = locations[rand(0..8)]
-#  location = "Cam 1"
-#  penalty_amount = (violation == "Number Coding") ? "500.00" : "150.00"
-#  captured_violator = CapturedViolator.create(capture_date: time, raw_image: "image#{i.to_s}", license_plate_image: "plate#{i.to_s}", violation: violation, location: location, penalty_amount: penalty_amount)
-#end
