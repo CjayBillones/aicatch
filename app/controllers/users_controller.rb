@@ -29,6 +29,14 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+
+    if @user.update_attributes(user_params)
+      flash[:success] = "Succesfully updated profile!"
+      redirect_to @user
+    else
+      flash.now[:error] = @user.errors.full_messages.join("<br>").html_safe
+      render 'edit'
+    end
   end
 
   def destroy

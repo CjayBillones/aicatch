@@ -16,21 +16,22 @@
     = f.label :password_confirmation, 'Password Confirmation'
     = f.password_field :password_confirmation
 
-  .field.required
-    = f.label :admin, "Admin Privilege"
-  .fields
-    .field
-      = f.radio_button :admin, true, class: 'ui radio checkbox'
-    .field
-      = f.label :admin, "Yes", value: true
-    .field
-      = f.radio_button :admin, false, checked: true, class: 'ui radio checkbox'
-    .field
-      = f.label :admin, "No", value: false
+  - if current_user.admin
+    .field.required
+      = f.label :admin, "Admin Privilege"
+    .fields
+      .field
+        = f.radio_button :admin, true, class: 'ui radio checkbox'
+      .field
+        = f.label :admin, "Yes", value: true
+      .field
+        = f.radio_button :admin, false, checked: true, class: 'ui radio checkbox'
+      .field
+        = f.label :admin, "No", value: false
 
-  .field.required
-    = f.label :role, "User Role"
-    = f.select(:role, user_roles_for_select, class: 'ui dropdown')
+    .field.required
+      = f.label :role, "User Role"
+      = f.select(:role, user_roles_for_select, class: 'ui dropdown')
 
   .field
     = f.submit yield(:button_text), class: 'ui fluid button primary'
