@@ -29,6 +29,7 @@ gem 'best_in_place'
 gem 'rubyzip', '>= 1.0.0'
 gem 'zip-zip'
 gem 'select2-rails', '~> 4.0', '>= 4.0.3'
+gem "font-awesome-rails"
 
 
 group :development, :test do

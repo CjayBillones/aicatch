@@ -1,0 +1,14 @@
+.ui.container style="margin-top: 100px;"
+  .ui.grid.stackable
+    .eight.wide.column
+      .row
+        h1.header style="margin-bottom: 0px;"
+          = @user.name
+        h4 style="margin-top: 5px;"
+          i.fa.fa-user style="padding-right: 5px;"
+          = "#{@user.username} | #{@user.role.downcase}"
+    .eight.wide.right.aligned.middle.aligned.column
+      = link_to edit_user_path(current_user), class: "ui large secondary basic button", style: "margin: 0px; padding: 10px;" do
+        i.center.aligned.edit.large.icon style="margin: 0px;"
+        | Edit Profile
+  .ui.divider
