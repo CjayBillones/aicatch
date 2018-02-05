@@ -10,7 +10,7 @@ module ApplicationHelper
   def logged_out
     unless !logged_in?
       flash[:info] = "You are already logged in!"
-      redirect_to root_path
+      redirect_to current_user
     end
   end
 
