@@ -38,6 +38,10 @@ class User < ApplicationRecord
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
+  def admin?
+    return self.admin
+  end
+
   class << self
     # Returns the hash digest of the given string.
     def digest(string)

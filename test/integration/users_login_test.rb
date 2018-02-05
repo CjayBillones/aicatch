@@ -20,7 +20,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
                                           password: 'password'
                                         }
                              }
-    assert_redirected_to root_path
+    assert_redirected_to @user
     follow_redirect!
     assert_select "a[href=?]", logout_path
     assert is_logged_in?
@@ -32,7 +32,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
                                           password: 'password'
                                         }
                              }
-    assert_redirected_to root_path
+    assert_redirected_to @user
     follow_redirect!
     assert_select "a[href=?]", logout_path
     assert is_logged_in?

@@ -8,8 +8,9 @@
           i.fa.fa-user style="padding-right: 5px;"
           = "#{@user.username} | #{@user.role.downcase}"
     .eight.wide.right.aligned.middle.aligned.column
-      = link_to edit_user_path(current_user), class: "ui large secondary basic button", style: "margin: 0px; padding: 10px;" do
-        i.center.aligned.edit.large.icon style="margin: 0px;"
-        | Edit Profile
+      - if current_user?(@user)
+        = link_to edit_user_path(@user), class: "ui large secondary basic button", style: "margin: 0px; padding: 10px;" do
+          i.center.aligned.edit.large.icon style="margin: 0px;"
+          | Edit Profile
   .ui.divider
   = render "shared/flash"

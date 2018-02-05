@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:session][:password])
       login @user
       params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
-      redirect_to root_path
+      redirect_to @user
     else
       flash.now[:error] = "Invalid username/password combination"
       render 'new'

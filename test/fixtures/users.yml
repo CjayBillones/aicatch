@@ -5,3 +5,17 @@ admin:
   password_digest: <%= User.digest('password') %>
   admin: true
   role: Operator Head
+operator:
+  id: 2
+  name: Operator
+  username: operator
+  password_digest: <%= User.digest('password') %>
+  admin: false
+  role: Operator
+aicatch:
+  id: 3
+  name: AI Catch Admin
+  username: aicatch_admin
+  password_digest: <%= User.digest('password') %>
+  admin: true
+  role: AICatch Admin
