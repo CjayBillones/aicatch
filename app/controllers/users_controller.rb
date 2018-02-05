@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   include ApplicationHelper
   
   before_action :logged_in_user
+  before_action :admin_user, only: [:new, :create]
   before_action :correct_user, only: [:edit, :update]
 
   def show
@@ -13,11 +14,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(new_user_params)
 
     if @user.save
       flash[:success] = "Successfully created user!"
-      redirect_to root_path
+      redirect_to current_user
     else
       flash.now[:error] = @user.errors.full_messages.join("<br>").html_safe
       render 'new'
@@ -31,7 +32,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if @user.update_attributes(user_params)
+    if @user.update_attributes(edit_user_params)
       flash[:success] = "Succesfully updated profile!"
       redirect_to @user
     else
@@ -46,8 +47,19 @@ class UsersController < ApplicationController
 
   private
 
-    def user_params
+    def new_user_params
       params.require(:user).permit(:name, :username, :password, :password_confirmation, :admin, :role)
+    end
+
+    def edit_user_params
+      params.require(:user).permit(:name, :username, :password, :password_confirmation)
+    end
+
+    def admin_user
+      if !current_user.admin?
+        flash[:error] = "You are not authorized to access this page!"
+        redirect_to current_user
+      end
     end
 
     def correct_user

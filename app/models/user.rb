@@ -42,6 +42,18 @@ class User < ApplicationRecord
     return self.admin
   end
 
+  def operator?
+    return self.role == "Operator"
+  end
+
+  def operator_head?
+    return self.role == "Operator Head"
+  end
+
+  def aicatch_admin?
+    return self.role == "AICatch Admin"
+  end
+
   class << self
     # Returns the hash digest of the given string.
     def digest(string)
