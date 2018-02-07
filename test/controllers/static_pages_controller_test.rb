@@ -16,9 +16,4 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_path
   end
 
-  test "should redirect to login page when accessing reports page by public user" do
-    get reports_path
-    assert_redirected_to login_path
-  end
-
 end
