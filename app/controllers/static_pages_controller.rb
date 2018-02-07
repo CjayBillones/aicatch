@@ -33,14 +33,4 @@ class StaticPagesController < ApplicationController
     @captured_violator_placeholders = @captured_violator_placeholders.paginate(:page => params[:page], :per_page => 20)
   end
 
-  def reports
-    @all_captured_violators = Offense.all
-    
-    respond_to do |format|
-      format.html
-      #format.csv { send_data @all_captured_violators.to_csv}
-      #format.xls #{ send_data @all_captured_violators.to_csv(col_sep: "\t")}
-    end
-  end
-
 end

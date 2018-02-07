@@ -7,6 +7,7 @@
   table#reports.ui.celled.table width="100%" cellspacing="0"
     thead
       tr.center.aligned
+        th
         th Date
         th Time
         th Location
@@ -19,6 +20,9 @@
     tbody
       - @all_captured_violators.each do |x|
         tr.center.aligned
+          th
+            = link_to offense_path(x), method: :delete, data: {:confirm => 'Are you sure?'}, class: 'ui basic button mini red', style: "margin: 0px;" do
+              i.center.aligned.trash.large.icon style="margin: 0px;"    
           th 
             = x.capture_date.strftime("%B %d, %Y (%A)")
           th 
