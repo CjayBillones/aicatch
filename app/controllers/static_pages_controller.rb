@@ -13,6 +13,7 @@ class StaticPagesController < ApplicationController
     #@source = params[:src]
     #@camera = params[:camera]
 
+    @frame = Frame.last
     @all_captured_violators = CapturedViolatorPlaceholder.all.order('capture_date DESC')
     @live_vehicles = LiveVehicle.all.order('capture_date DESC')
 

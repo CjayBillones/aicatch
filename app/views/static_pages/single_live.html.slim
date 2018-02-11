@@ -3,13 +3,4 @@
     h1.ui.center.aligned.header
       = @camera
     .ui.divider  
-    .ui.left.aligned.grid.stackable
-      .ten.wide.column
-        .ui.segment
-          image[src="http://62.242.189.219:80/mjpg/video.mjpg?COUNTER" style="border: 0 none transparent; min-height: 200px; max-height: 600px;" height="100%" width="100%" frameborder="0"]
-      .six.wide.column 
-        .ui.segment
-          h1.ui.center.aligned.header
-            | Captured License Plates
-        #live_vehicles.ui.segment style="height: 450px; margin-top: 15px; overflow:scroll;"
-          = render 'live_vehicles'
+    = render 'live_vehicles'

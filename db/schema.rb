@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180203191755) do
+ActiveRecord::Schema.define(version: 20180211205803) do
 
   create_table "captured_violator_placeholders", force: :cascade do |t|
     t.string  "capture_date"
@@ -27,6 +27,12 @@ ActiveRecord::Schema.define(version: 20180203191755) do
     t.string   "license_plate_text"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+  end
+
+  create_table "frames", force: :cascade do |t|
+    t.string   "image_filename"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "image_evidences", force: :cascade do |t|
