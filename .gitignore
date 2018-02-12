@@ -24,3 +24,8 @@
 .byebug_history
 
 /public/TRAFFIC VIOLATIONS/*
+/public/MASTER
+!/public/MASTER/LIVE
+
+# Not working file
+testSQL.py
