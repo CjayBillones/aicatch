@@ -59,7 +59,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function () {
-  setInterval(refreshPartial, 1000);
+  setInterval(refreshPartial, 10000);
 });
 
 function refreshPartial() {
